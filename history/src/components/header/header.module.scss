@@ -1,0 +1,119 @@
+@use '../../styles/variables' as *;
+
+.header {
+    position: relative;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    .headerImage {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+  
+    .overlay {
+      position: relative;
+      padding: 30px;
+      background-color: $color-dark-gray;
+      text-align: center;
+      color: $color-light-beige;
+      border: 1rem solid $color-dark-brown;
+      margin-top: 45rem;
+      z-index: 11;
+    }
+  
+    .defaultTitle {
+      font-family: $font-primary;
+    }
+
+    .defaultSubtitle {
+      font-family: $font-secondary;
+    }
+  
+    .todayPageTitle {
+      font-size: 8rem;  
+      padding-bottom: 3rem;
+    }
+
+    .todayPageSubtitle {
+      color: $color-light-olive;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .todayPageOverlay {
+      padding-right: 5rem;
+      padding-left: 5rem;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  
+    .byDateTitle {
+      color: $color-light-olive;
+      font-size: 8rem;
+      padding-bottom: 3rem;
+    }
+    
+  
+    .byDateSubtitle {
+      color: $color-light-olive;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .byDateOverlay {
+        padding-right: 8rem;
+        padding-left: 8rem;
+    }
+
+    .sincePageTitle {
+        font-size: 8rem;
+        padding-bottom: 3rem;
+    }
+
+    .sincePageSubtitle {
+        color: $color-light-olive;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .sincePageOverlay {
+        padding-right: 8rem;
+        padding-left: 8rem;
+    }
+  
+    .circleTopLeft,
+    .circleTopRight,
+    .circleBottomLeft,
+    .circleBottomRight {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-color: $color-light-beige;
+      border-radius: 50%;
+    }
+  
+    .circleTopLeft {
+      top: 10px;
+      left: 10px;
+    }
+  
+    .circleTopRight {
+      top: 10px;
+      right: 10px;
+    }
+  
+    .circleBottomLeft {
+      bottom: 10px;
+      left: 10px;
+    }
+  
+    .circleBottomRight {
+      bottom: 10px;
+      right: 10px;
+    }
+  }
