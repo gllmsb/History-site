@@ -1,0 +1,47 @@
+@use '../styles/variables' as *;
+  
+  //*LOADING
+  .loadingMessage {
+    font-family: $font-primary;  
+    font-size: 2rem;            
+    font-weight: bold;           
+    text-align: center;          
+    margin-top: 50px;            
+    color: $color-light-beige;   
+    animation: pulse 1.5s infinite ease-in-out;  
+  }
+  
+  @keyframes pulse {
+    0% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+  
+  //*ERROR
+  .errorMessage {
+    font-family: $font-primary;  
+    font-size: 1.5rem;           
+    color: darkred;     
+    text-align: center;         
+    margin: 20px 0;              
+    padding: 10px 20px;          
+    border: 1px solid darkred; 
+    background-color: rgba(255, 0, 0, 0.1);
+    border-radius: 5px;          
+    animation: fadeIn 0.5s ease-in; 
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }

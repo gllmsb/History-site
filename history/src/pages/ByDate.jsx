@@ -3,20 +3,20 @@ import { Header } from "../components/header/header";
 import styles from './byDate.module.scss';
 import { Navbar } from '../components/navbar/navbar';
 import { useQuery } from '@tanstack/react-query';
-import readMoreIcon from '../assets/images/readmore.png';
-import backToTopIcon from '../assets/images/arrowup.png';
+import { EventList } from '../components/eventList/eventList';
+import { BackToTopButton } from '../components/backToTop/backToTop';
 
 export const ByDate = () => {
   const [month, setMonth] = useState('');
   const [day, setDay] = useState('');
   const [errorState, setErrorState] = useState('');
   const [visibleEvents, setVisibleEvents] = useState(5);
-  const [showBackToTop, setShowBackToTop] = useState(false); 
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   const daysInMonth = (month) => {
     const daysPerMonth = {
       1: 31,
-      2: 28, 
+      2: 28,
       3: 31,
       4: 30,
       5: 31,
@@ -64,13 +64,12 @@ export const ByDate = () => {
     return response.json();
   };
 
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['byDateEvents', month, day],
     queryFn: fetchHistoricalData,
     enabled: !!month && !!day && !errorState,
     staleTime: 1000 * 600,
     retry: 2,
-    refetchOnWindowFocus: false,
   });
 
   const events = data?.events || [];
@@ -136,53 +135,21 @@ export const ByDate = () => {
         customSubtitleClass="byDateSubtitle"
         customOverlayClass="byDateOverlay"
       />
-
       <Navbar />
 
       {isLoading && <p className={styles.loadingMessage}>Historical events loading...</p>}
       {errorState && <p className={styles.errorMessage}>{errorState}</p>}
 
-      <div className={styles.timeline}>
-        {events.length > 0 ? (
-          <>
-            <div className={styles.timelineStart}></div>
-            {events.slice(0, visibleEvents).map((event, index) => (
-              <div key={index} className={styles.timelineEvent}>
-                <div className={`${styles.year} ${index % 2 === 0 ? styles.yearEven : styles.yearOdd}`}>
-                  YEAR: {event.year}
-                </div>
-                <div className={`${styles.timelineContent} ${index % 2 === 0 ? styles.timelineContentEven : styles.timelineContentOdd}`}>
-                  <p>{event.text}</p>
-                  {event.pages?.length > 0 && (
-                    <a href={event.pages[0].content_urls.desktop.page} target="_blank" rel="noopener noreferrer">
-                      {index % 2 === 0 ? (
-                        <>Read more <img src={readMoreIcon} alt="Read more" className={styles.readMoreIcon} /></>
-                      ) : (
-                        <><img src={readMoreIcon} alt="Read more" className={styles.readMoreIcon} /> Read more</>
-                      )}
-                    </a>
-                  )}
-                </div>
-              </div>
-            ))}
-          </>
-        ) : (
-          <p className={styles.noData}>No events available for this date.</p>
-        )}
-      </div>
+      <EventList 
+        events={events} 
+        visibleEvents={visibleEvents} 
+        loadMoreEvents={loadMoreEvents} 
+      />
 
-      {visibleEvents < events.length && (
-        <div className={styles.scrollDownSection} onClick={loadMoreEvents}>
-          <p className={styles.scrollText}>Scroll down for more</p>
-          <div className={styles.arrowDown}></div>
-        </div>
-      )}
-
-      {showBackToTop && (
-        <div className={styles.backToTop} onClick={scrollToTop}>
-          <img src={backToTopIcon} alt="Back to top" className={styles.backToTopIcon} />
-        </div>
-      )}
+      <BackToTopButton 
+        showBackToTop={showBackToTop} 
+        scrollToTop={scrollToTop} 
+      />
     </>
   );
 };
