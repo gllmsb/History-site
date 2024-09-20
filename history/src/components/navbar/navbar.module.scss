@@ -1,40 +1,56 @@
 @use '../../styles/variables' as *;
 
 .navbar {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: $color-dark-gray;
-    padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    position: relative;
-    padding-top: 15rem;
-    z-index: 10;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: $color-dark-gray;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+  padding-top: 15rem;
+  z-index: 10;
+
+ 
+  @media (max-width: 768px) {
+    padding-top: 5rem; 
+    flex-direction: column; 
   }
-  
-  .navLinks {
-    display: flex;
-    list-style: none;
-    gap: 10rem;
-  
-    li {
-      font-family: $font-primary;
-      font-size: 2.5rem; 
-      letter-spacing: 0.05rem;
-  
-      a {
-        color: $color-light-beige; 
-        text-decoration: none;
-        padding: 0.5rem 1rem;
-        transition: color 0.3s ease;
-  
-        &:hover {
-          color: $color-light-olive; 
-        }
+}
+
+.navLinks {
+  display: flex;
+  list-style: none;
+  gap: 10rem;
+
+  li {
+    font-family: $font-primary;
+    font-size: 2.5rem; 
+    letter-spacing: 0.05rem;
+
+    a {
+      color: $color-light-beige; 
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $color-light-olive; 
       }
     }
-  
-    .active {
-      border-bottom: 2px solid $color-light-olive;  
+  }
+
+  .active {
+    border-bottom: 2px solid $color-light-olive;  
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column; 
+    gap: 3rem; 
+    align-items: center; 
+
+    li {
+      font-size: 2rem; 
     }
   }
+}

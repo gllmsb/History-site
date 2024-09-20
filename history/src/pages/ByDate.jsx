@@ -69,7 +69,6 @@ export const ByDate = () => {
     queryFn: fetchHistoricalData,
     enabled: !!month && !!day && !errorState,
     staleTime: 1000 * 600,
-    retry: 2,
   });
 
   const events = data?.events || [];
@@ -80,7 +79,7 @@ export const ByDate = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 200 && events.length > 0) {
+      if (window.scrollY > 300 && events.length > 0) {
         setShowBackToTop(true);
       } else {
         setShowBackToTop(false);

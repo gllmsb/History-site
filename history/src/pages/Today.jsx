@@ -9,6 +9,7 @@ import { BackToTopButton } from "../components/backToTop/backToTop";
 export const Today = () => {
   const [visibleEvents, setVisibleEvents] = useState(5);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [isLightMode, setIsLightMode] = useState(false);
 
   const today = new Date();
   const month = (today.getMonth() + 1).toString().padStart(2, '0');
@@ -26,7 +27,6 @@ export const Today = () => {
     queryKey: ['todayEvents', month, day],
     queryFn: fetchTodayData, 
     staleTime: 1000 * 60 * 60, 
-    retry: 2
   });
 
   const events = data?.events || [];
